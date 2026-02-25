@@ -4,16 +4,20 @@
 //  This makes use of the UPS shipping API to request shipping 
 //  quotes for Sun-Mar
 //
-//  Requests an access token from the server using sun-mar creds
+//  Developer portal: https://developer.ups.com/ or can access from the bottom of normal UPS page
+//  creds same as normal:  un:SunMarCorp  pw: 1s4M!J61s4M!J6  (controlled by sun-mar)
+//  select the myApps from the top menu Area
+//  There are 2 that I created - "Web access canada" and "website UPS acct" - canada and USA
+//  This provide access cred management and the list of UPS web services that are enabled
+//  the access creds.
 //
-//  There are separate creds for the canada and USA accounts. These
-//  are accesse from the developer portal once logged into the main 
-//  UPS accounts
 //
-// Shop with Time in Transit - access points (www.cie is the development server)
+// Web servie access points that we make use of
 //
-// https://onlinetools.ups.com/api/rating/v2403/shop?additionalinfo=timeintransit
-// https://wwwcie.ups.com/api/rating/v2403/shop?additionalinfo=timeintransit
+// Rating with transit time - for estimates
+//
+// Prod: https://onlinetools.ups.com/api/rating/v2403/shop?additionalinfo=timeintransit
+// dev: https://wwwcie.ups.com/api/rating/v2403/shop?additionalinfo=timeintransit
 //
 //
 // USA account and Creds
@@ -88,8 +92,8 @@ const formData=
   grant_type: 'client_credentials'
   };
 
-//access the API to request an access token, authorization information is the client IS and 
-//client secret from the UPS developer portal for Sun-Mar
+//access the API to request an access token, authorization information is the client ID and 
+//client secret from the UPS developer portal for Sun-Mar (see above)
 resp=await fetch(`https://wwwcie.ups.com/security/v1/oauth/token`,
     {
     method: 'POST',
